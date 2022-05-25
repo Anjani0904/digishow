@@ -1,0 +1,67 @@
+{% extends 'base.html' %} 
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div class="container">
+    {% include 'message.html' %}
+    <div class="row">
+        <div class="col-md-5 mx-auto">
+            <br><br>
+            <br><br><br><br>
+            <form method="post" class="card social_icon">
+                <div class="card-body">
+                    {% csrf_token %}
+                    <h1>Student Form</h1>
+                    {{form|crispy}}
+                    <button class="btn btn-primary">Save</button>
+                </div>
+              
+            </form>
+            <hr>
+            <form method="post" class="card social_icon">
+                <div class="card-body">
+                    {% csrf_token %}
+                    <h1>Project Form</h1>
+                    {{form|crispy}}
+                    <button class="btn btn-primary">Save</button>
+                </div>
+              
+            </form>
+            <hr>
+           
+           
+            <form method="post" class="card shadow-lg">
+                <div class="card-body">
+                    {% csrf_token %}
+                    <h1>Category Form</h1>
+                    {{form|crispy}}
+                    <button class="btn btn-primary">Save</button>
+                </div>
+              
+            </form>
+            <hr> 
+            <form method="post" class="card social_icon">
+                <div class="card-body">
+                    {% csrf_token %}
+                    <h1>Picture Form</h1>
+                    {{form|crispy}}
+                    <button class="btn btn-primary">Save</button>
+                </div>
+              
+            </form>
+            <hr>
+            <form method="post" class="card shadow-lg">
+                <div class="card-body">
+                    {% csrf_token %}
+                    <h1>Video Form</h1>
+                    {{form|crispy}}
+                    <button class="btn btn-primary">Save</button>
+                </div>
+              
+            </form>
+  
+        </div>
+    </div>
+</div>
+<br>
+{% endblock %}
