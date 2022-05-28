@@ -26,11 +26,12 @@ def we_do(request):
 
 @login_required
 def student_view(request):
-    form = StudentProfileForm(request.POST)
+    
     if request.method == 'POST':
+        form = StudentProfileForm(request.POST,request.FILES)
         if form.is_valid():
             form.save()
-            messages.success(request, 'Data has been successfully added.')
+            img_object=form.instance
             return redirect('dashboard')
     ctx = {
         'form': form,
