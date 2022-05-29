@@ -82,7 +82,7 @@ WSGI_APPLICATION = 'myproject.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': BASE_DIR.joinpath('db.sqlite3'),
     }
 }
 
@@ -123,7 +123,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR.joinpath('static')
-STATICFILES_DIRS = [BASE_DIR.joinpath('assets')]
+# STATICFILES_DIRS = [BASE_DIR.joinpath('assets')]
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR.joinpath('media/')
@@ -135,7 +135,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
  
 LOGIN_URL='authy:login'
 LOGIN_REDIRECT_URL='/'
-LOGOUT_REDIRECT_URL='/login'
+LOGOUT_REDIRECT_URL='/'
 
 
 

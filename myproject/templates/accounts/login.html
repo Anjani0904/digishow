@@ -9,7 +9,7 @@
                 <div class="card-body">
                     <h2>Login Form</h2>
                     <hr/> {% if messages %} {% for message in messages %}
-                    <p>{{message}}</p>
+                    <p>{{message|safe}}</p>
                     {% endfor %} {% endif %}
                     <form method="post" action="">
                         {% csrf_token %} {{form.as_p}}

@@ -1,4 +1,3 @@
-
 {% extends 'base.html' %}
 
 {% block content %}
@@ -9,16 +8,16 @@
             <div class="card">
                 <div class="card-body">
                     <h2>Registration Form</h2>
-            <hr/> {% if messages %} {% for message in messages %}
-            <p>{{message}}</p>
-            {% endfor %} {% endif %}
-            <form method="post" action="">
-                {% csrf_token %} {{form.as_p}}
-                <input type="submit" />
-            </form>
+                    <hr /> {% if messages %} {% for message in messages %}
+                    <p>{{message|safe}}</p>
+                    {% endfor %} {% endif %}
+                    <form method="post" action="">
+                        {% csrf_token %} {{form.as_p}}
+                        <input type="submit" />
+                    </form>
                 </div>
             </div>
-            
+
         </div>
     </div>
 </div>

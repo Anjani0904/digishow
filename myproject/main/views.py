@@ -1,3 +1,4 @@
+import json
 from django.shortcuts import render,redirect
 from django.contrib import messages
 from .forms import CategoryForm,ProjectForm,StudentProfileForm,PictureForm,VideoForm
@@ -6,86 +7,109 @@ from .models import *
 from django.contrib.auth.decorators import login_required
 
 
-@login_required
+
 def index(request):
-    return render(request,'index.html')
+    projects = Project.objects.all()
+    context = {
+        'projects':projects
+    }
+    return render(request,'index.html',context)
 
 def aboutpage(request):
     return render(request,'about.html')
 
 
-def contact(request):
-    return render(request,'contact.html')
-
-    
-def portfolio(request):
-    return render(request,'portfolio.html')
-
-def we_do(request):
-    return render(request,'we_do.html')
-
 @login_required
-def student_view(request):
-    form = StudentProfileForm(request.POST)
-    if request.method == 'POST':
-        
-        if form.is_valid():
-            form.save()
-            return redirect('dashboard')
-    ctx = {
-        'form': form,
-    }
-    return render(request, 'dashboard.html', ctx)
+def dashboard(request):
+    # try:
+    profile = StudentProfile.objects.filter(user=request.user).first()
+    if profile is not None:
+        projects = Project.objects.filter(student=profile)
+        form = ProjectForm()
+        if request.method == 'POST':
+            form = ProjectForm(request.POST,request.FILES)
+            if form.is_valid():
+                project = form.save(commit=False)
+                project.student = profile
+                project.likes = 0
+                project.save()
+                return redirect('main:dashboard')
+        context = {
+            'profile':profile,
+            'projects':projects,
+            'form':form
+        }
+        return render(request,'dashboard.html',context)
+    # except Exception as e:
+    else:
+        # print(e)
+        profile = None
+        form = StudentProfileForm()
+        if request.method == 'POST':
+            form = StudentProfileForm(request.POST,request.FILES)
+            if form.is_valid():
+                profile = form.save(commit=False)
+                profile.user = request.user
+                profile.save()
+                return redirect('main:dashboard')
+        return render(request,'dashboard.html',{'profileform':form})   
 
-@login_required
-def project_view(request):
-    form = ProjectForm(request.POST)
+def profile_edit(request,id):
+    profile = StudentProfile.objects.get(id=id)
+    form = StudentProfileForm(instance=profile)
     if request.method == 'POST':
+        form = StudentProfileForm(request.POST,request.FILES,instance=profile)
         if form.is_valid():
             form.save()
-            messages.success(request, 'Your project has been successfully added.')
             return redirect('dashboard')
-    ctx = {
-        'form': form,
+    context = {
+        'form':form
     }
-    return render(request, 'dashboard.html', ctx)
+    return render(request,'profile_edit.html',context)
 
-    
-def category_view(request):
-    form = CategoryForm(request.POST)
-    if request.method == 'POST':
-        if form.is_valid():
-            form.save()
-            messages.success(request, 'Data  has been successfully added.')
-            return redirect('dashboard')
-    ctx = {
-        'form': form,
+def all_projects(request):
+    projects = Project.objects.all()
+    context = {
+        'projects':projects
     }
-    return render(request, 'dashboard.html', ctx)
+    return render(request,'portfolio.html',context)
 
-def picture_view(request):
-    form = PictureForm(request.POST)
-    if request.method == 'POST':
-        if form.is_valid():
-            form.save()
-            messages.success(request, 'Your project has been successfully added.')
-            return redirect('dashboard')
-    ctx = {
-        'form': form,
+def project_details(request,id):
+    project = Project.objects.get(id=id)
+    context = {
+        'project':project
     }
-    return render(request, 'dashboard.html', ctx)
+    return render(request,'project_details.html',context)
 
-def video_view(request):
-    form = VideoForm(request.POST)
+def project_like(request,id):
+    project = Project.objects.get(id=int(id))
+    project.likes += 1
+    project.save()
+    return json.dumps({'likes':project.likes})
+
+def project_unlike(request,id):
+    project = Project.objects.get(id=int(id))
+    project.likes -= 1
+    project.save()
+    return json.dumps({'likes':project.likes})
+
+def project_delete(request,id):
+    project = Project.objects.get(id=int(id))
+    project.delete()
+    return redirect('main:dashboard')
+
+def project_edit(request,id):
+    project = Project.objects.get(id=id)
+    form = ProjectForm(instance=project)
     if request.method == 'POST':
+        form = ProjectForm(request.POST,request.FILES,instance=project)
         if form.is_valid():
             form.save()
-            messages.success(request, 'Your project has been successfully added.')
-            return redirect('dashboard')
-    ctx = {
-        'form': form,
+            return redirect('main:dashboard')
+    context = {
+        'form':form
     }
-    return render(request, 'dashboard.html', ctx)
+    return render(request,'project_edit.html',context)
 
 def contact_view(request):
 

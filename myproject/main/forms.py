@@ -14,7 +14,7 @@ class ProjectForm(forms.ModelForm):
 class StudentProfileForm(forms.ModelForm):
     class Meta:
         model = StudentProfile
-        fields = ('user','full_name','photo','course')
+        fields = ('full_name','photo','course')
 
 class PictureForm(forms.ModelForm):
     class Meta:
