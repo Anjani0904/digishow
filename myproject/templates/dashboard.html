@@ -33,7 +33,7 @@
             <form method="POST" enctype="multipart/form-data">
                 {{form |crispy}}
                 {% csrf_token %}
-                <button type="submit" class="btn btn-primary">Create Student profile</button>
+                <button type="submit" class="btn btn-primary">Upload</button>
             </form>
         </div>
     </div>
@@ -48,10 +48,10 @@
                     <div class="card">
                         <img class="card-img-top" src="{{ project.hero_img.url }}" alt="Card image cap">
                         <div class="card-body">
-                            <h3 class="card-title">{{project.title}}</h3>
-                            <p class="lead">{{project.description}}</p>
-                            <p class="lead">{{project.likes}}</p>
-                            <p class="lead">{{project.added_on}}</p>
+                            <h3 class="card-title">Title : {{project.title}}</h3>
+                            <p class="lead">Description :{{project.description}}</p>
+                            <p class="lead">Likes :{{project.likes}}</p>
+                            <p class="lead">Published on :{{project.added_on}}</p>
                         </div>
                         <div class="card-footer">
                             <a href="{% url 'main:project_details' project.id %}" class="btn btn-primary">
