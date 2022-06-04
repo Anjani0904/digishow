@@ -7,6 +7,7 @@
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
+        background-color:rgb(48, 195, 195);
         height: 500px;
     }
 </style>
@@ -14,18 +15,18 @@
 </div>
 <div class="container py-5">
     <div class="row">
-        <div class="col-md-12 py-5 my-5">
-            <h1 class="display-4 mb-3">Title : {{project.title}}</h1>
+        <div class="col-md-12">
+            <h1 class="text-center" style="font-size:40px; font-family:Verdana, Geneva, Tahoma, sans-serif;color:rgb(46, 44, 180)">Title : {{project.title}}</h1>
             <div class="row">
 
 
                 <div class="col-md-12 mx-auto">
                     <div class="card shadow-0 border-0">
                         <div class="card-body">
-                            <p class="lead" style="padding-top: 2%; font-weight: 550;color:rgb(0, 4, 255);">Description : {{project.description}}</p>
+                            <p class="lead" style="padding-top: 2%; font-weight: 550;color:rgb(12, 12, 16);">  Description       : {{project.description}}</p>
                             <p class="lead" style="padding-top: 2%; font-weight: 550;">Technology : {{project.category}}</p>
-                            <p class="lead" style="padding-top: 2%; font-weight: 550;">Likes : {{project.likes}}</p>
-                            <p class="lead" style="padding-top: 2%; font-weight: 550;">Published_on :{{project.added_on}}</p>
+                                                      <p class="lead" style="padding-top: 2%; font-weight: 550;">Likes        : {{project.likes}}</p>
+                            <p class="lead" style="padding-top: 2%; font-weight: 550;">Published_on :      {{project.added_on}}</p>
                         </div>
 
                         {% if project.student.user == request.user %}
