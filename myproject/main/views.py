@@ -118,14 +118,7 @@ def contact_view(request):
         phone = request.POST.get('phone')
         email = request.POST.get('email')
         message = request.POST.get('message')
-        # print(name, email, message, subject)
-        if name and email and message:
-            messages.success(request, 'Your message has been sent successfully.')
-        elif not name:
-            messages.error(request, 'Please enter your name.')
-        elif not email:
-            messages.error(request, 'Please enter your email.')
-        elif not message:
-            messages.error(request, 'Please enter your message.')
-        return redirect('contact')
+        print(name,phone,email,message)
+        obj=Contact(name=name,email=email,phone=phone,message=message)
+        obj.save()
     return render(request, 'contact.html')

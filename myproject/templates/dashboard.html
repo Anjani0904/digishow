@@ -10,7 +10,7 @@
             <form method="POST" enctype="multipart/form-data">
                 {{profileform|crispy}}
                 {% csrf_token %}
-                <button type="submit" class="btn btn-primary">Add a project</button>
+                <button type="submit" class="btn btn-primary">Submit</button>
             </form>
         </div>
     </div>
@@ -22,9 +22,9 @@
             <div class="card">
                 <img class="card-img-top" src="{{ profile.photo.url }}" alt="Card image cap">
                 <div class="card-body">
-                    <h3 class="card-title">Student Profile</h3>
-                    <p class="lead">{{profile.full_name}}</p>
-                    <p class="lead">{{profile.course}}</p>
+                    <h3 style="font-weight:700; font-family:Verdana, Geneva, Tahoma, sans-serif;color:rgb(184, 32, 12)" class="card-title">Student Profile</h3>
+                    <p class="lead" style="font-size:20px; font-family:Verdana, Geneva, Tahoma, sans-serif;color:rgb(27, 25, 165)">Name   : {{profile.full_name}}</p>
+                    <p class="lead" style="font-size:20px; font-family:Verdana, Geneva, Tahoma, sans-serif;color:rgb(27, 25, 165)">Course : {{profile.course}}</p>
                 </div>
             </div>
         </div>
@@ -33,7 +33,7 @@
             <form method="POST" enctype="multipart/form-data">
                 {{form |crispy}}
                 {% csrf_token %}
-                <button type="submit" class="btn btn-primary">Create Student profile</button>
+                <button type="submit" class="btn btn-primary">Upload</button>
             </form>
         </div>
     </div>
@@ -42,30 +42,39 @@
         <div class="col-md-12 py-5 my-5">
             <h1 class="display-4 mb-3">Your Project List</h1>
             <div class="row">
+                
 
                 {% for project in projects %}
                 <div class="col-md-6">
                     <div class="card">
                         <img class="card-img-top" src="{{ project.hero_img.url }}" alt="Card image cap">
                         <div class="card-body">
-                            <h3 class="card-title">{{project.title}}</h3>
-                            <p class="lead">{{project.description}}</p>
-                            <p class="lead">{{project.likes}}</p>
-                            <p class="lead">{{project.added_on}}</p>
+                            <h3 class="card-title">Title : {{project.title}}</h3>
+                            <p class="lead">Description :{{project.description}}</p>
+                            <p class="lead">Project_by  : {{profile.full_name}}</p>
+                   
+                            <p class="lead">Likes :{{project.likes}}</p>
+                            <p class="lead">Published on :{{project.added_on}}</p>
                         </div>
                         <div class="card-footer">
                             <a href="{% url 'main:project_details' project.id %}" class="btn btn-primary">
                                 View Project
+                                
                             </a>
+                            
                             <a href="{% url 'main:project_delete' project.id %}" class="btn btn-outline-danger">
                                 delete Project
                             </a>
                             <a href="{% url 'main:project_edit' project.id %}" class="btn btn-outline-warning">
                                 Edit Project
                             </a>
+                            
                         </div>
+                        
                     </div>
+                    
                 </div>
+                
                 {% empty %}
                 <div class="col">
                     <div class="card">

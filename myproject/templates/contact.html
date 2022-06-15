@@ -1,35 +1,36 @@
-{% extends 'base.html' %} {% block content %}
+{% extends 'base.html' %} 
+{% block content %}
 
 <!-- contact -->
+
 <div class="contact">
     <div class="container">
         <br><br>
         <div class="row ">
             <div class="col-md-8 offset-md-2">
                 <div class="titlepage text_align_left">
-                    <h2>Get In Touch</h2>
+                    <h2 style="font-size:50px; font-family:Verdana, Geneva, Tahoma, sans-serif;color:rgb(31, 13, 190)">Get In Touch</h2>
                     {% include 'message.html' %}
   
                 </div>
                 <form method="post" id="request" class="main_form">
                     {% csrf_token %}
                     <div class="row">
-                        
-                  
                         <div class="col-md-12">
-                            <input class="contactus" placeholder="Name" type="type" name=" Name">
+                            
+                            <input class="contactus" placeholder="Enter your name" type="type" name="name" style="font-weight:700; font-family:Verdana, Geneva, Tahoma, sans-serif;color:black">
                         </div>
                         <div class="col-md-12">
-                            <input class="contactus" placeholder="Phone Number" type="type" name="Phone Number">
+                            <input class="contactus" placeholder="Enter your Phone number" type="type" name="phone" style="font-weight:700; font-family:Verdana, Geneva, Tahoma, sans-serif;color:black">
                         </div>
                         <div class="col-md-12">
-                            <input class="contactus" placeholder="Email" type="type" name="Email">
+                            <input class="contactus" placeholder="Enter your email address" type="type" name="email" style="font-weight:700; font-family:Verdana, Geneva, Tahoma, sans-serif;color:black">
                         </div>
                         <div class="col-md-12">
-                            <textarea class="textarea" placeholder="Message" type="type" Message="Name"></textarea>
+                            <textarea class="textarea" placeholder="Message" type="type" name="message" style="font-weight:700; font-family:Verdana, Geneva, Tahoma, sans-serif;color:black"></textarea>
                         </div>
                         <div class="col-md-12">
-                            <button class="send_btn">Send Now</button>
+                            <button class="btn btn-success" width:10px>Send Now</button>
                         </div>
                     </div>
                 </form>

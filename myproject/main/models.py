@@ -29,6 +29,15 @@ class Project(models.Model):
     def __str__(self):
         return self.title
 
+class Contact(models.Model):
+    name = models.CharField(max_length=30)
+    phone = models.CharField(max_length=30)
+
+    email = models.EmailField(max_length=30)
+
+    message=models.TextField(max_length=30)
+
+
 
 class Picture(models.Model):
     project = models.ForeignKey(Project,on_delete=models.CASCADE)
@@ -37,13 +46,11 @@ class Picture(models.Model):
 class Video(models.Model):
     project = models.ForeignKey(Project,on_delete=models.CASCADE)
     video=models.FileField()
-  
-class Subscriber(models.Model):
-    email = models.EmailField()
-    created_on = models.DateTimeField(auto_now_add=True)
 
-    def __str__(self):
-        return self.email
+
+
+
+
      
 
         

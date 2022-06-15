@@ -11,7 +11,7 @@
                         <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
                         <li data-target="#myCarousel" data-slide-to="1"></li>
                         <li data-target="#myCarousel" data-slide-to="2"></li>
-                        <li data-target="#myCarousel" data-slide-to="3"></li>
+                    
                     </ol>
                     <div class="carousel-inner">
                         <div class="carousel-item active">
@@ -19,9 +19,6 @@
                                 <div class="carousel-caption relative">
                                     <div class="bluid">
                                         <h1>Digi <br>Showcase </h1>
-                                        <p>There are many variations of passages of Lorem Ipsum <br>available, but the
-                                            majority have suffered alteration
-                                        </p>
                                         <a class="read_more" href="{% url 'main:about' %}">About Project </a><a
                                             class="read_more" href="{% url 'main:contact' %}">Contact </a>
                                     </div>
@@ -33,9 +30,7 @@
                                 <div class="carousel-caption relative">
                                     <div class="bluid">
                                         <h1>Digi <br>Showcase </h1>
-                                        <p>There are many variations of passages of Lorem Ipsum <br>available, but the
-                                            majority have suffered alteration
-                                        </p>
+                                        
                                         <a class="read_more" href="{% url 'main:about' %}">About Project </a><a
                                             class="read_more" href="{% url 'main:contact' %}">Contact </a>
                                     </div>
@@ -47,9 +42,7 @@
                                 <div class="carousel-caption relative">
                                     <div class="bluid">
                                         <h1>Digi <br>Showcase </h1>
-                                        <p>There are many variations of passages of Lorem Ipsum <br>available, but the
-                                            majority have suffered alteration
-                                        </p>
+                                        
                                         <a class="read_more" href="{% url 'main:about' %}">About Project </a><a
                                             class="read_more" href="{% url 'main:contact' %}">Contact </a>
                                     </div>
@@ -61,9 +54,7 @@
                                 <div class="carousel-caption relative">
                                     <div class="bluid">
                                         <h1>Digi <br>Showcase </h1>
-                                        <p>There are many variations of passages of Lorem Ipsum <br>available, but the
-                                            majority have suffered alteration
-                                        </p>
+                                        
                                         <a class="read_more" href="{% url 'main:about' %}">About Project </a><a
                                             class="read_more" href="{% url 'main:contact' %}">Contact </a>
                                     </div>
@@ -102,7 +93,7 @@
             <div class="col-md-6">
                 <div id="ho_nf" class="portfolio_main text_align_left">
                     <figure>
-                        <img src="{{project.hero_img.url}}" alt="#" />
+                        <img src="{{project.hero_img.url}}" class="card-img-top" alt="#" height="200px"/>
                         <div class="portfolio_text">
                             <div class="li_icon">
                                 <a><i class="fa fa-thumbs-up" aria-hidden="true"></i> {{project.likes}}</a>
